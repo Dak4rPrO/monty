@@ -4,28 +4,35 @@
  * @brief 
  * 
  */
-ssize_t read_textfile(const char *filename, size_t letters)
+int main(int argc __attribute__((unused)), char *argv[])
 {
-    ssize_t _open, _read;
-    char *buff = malloc(sizeof(char) * letters);
+	const char *filename = argv[1];
+    	size_t bufsize = 0;
+	char *buff = NULL;
+	FILE* _open = fopen(filename, "r");
 
-	if (filename == NULL || buff == NULL)
-        printf("Error: malloc failed\n");
-		exit (EXIT_FAILURE);
+	/*char *buff = malloc(sizeof(char) * letters);
 
-	_open = open(filename, O_RDONLY);
-
-    if (_open == -1)
+	if (buff == NULL)
 	{
-        printf("Error: Can't open file %s\n", filename);
-		free(buff);
+		printf("Error: malloc failed\n");
 		exit (EXIT_FAILURE);
 	}
+*/	
+    
+	/*if (_open == NULL)
+	{
+		printf("Error: Can't open file %s\n", filename);
+		free(buff);
+		exit (EXIT_FAILURE);
+	}*/
 
-	_read = read(_open, buff, letters);
+	while (getline(&buff, &bufsize, _open) != -1)
+	{
+		printf("%s", buff);
+	}
+	
+	/*free(buff);*/
 
-	free(buff);
-	close(_open);
-
-	exit (EXIT_SUCCESS);
+	return (0);
 }
