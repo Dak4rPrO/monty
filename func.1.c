@@ -4,10 +4,9 @@
 *
 *
 */
-void push(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
+void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *top;
-	(void)line_number;
 
 	top = malloc(sizeof(stack_t));
 	if (top == NULL)
@@ -19,6 +18,13 @@ void push(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 	top->n = atoi(strtok(NULL, " "));
 	top->next = *stack;
 	top->prev = NULL;
+
+	if (top->n < 48 || top->n > 57 || top->n == NULL)
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
 	if (*stack != NULL)
 		(*stack)->prev = top;
 	*stack = top;

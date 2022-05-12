@@ -10,7 +10,7 @@
 int main(int argc __attribute__((unused)), char *argv[])
 {
 	stack_t *stack = NULL;
-	unsigned int line_number = 0;
+	unsigned int line_number = 1;
 	const char *filename = argv[1];
 	size_t bufsize = 0;
 	char *buff = NULL, *token = NULL;
@@ -34,6 +34,7 @@ int main(int argc __attribute__((unused)), char *argv[])
 
 	while (getline(&buff, &bufsize, _open) != -1)
 	{
+		line_number++;
 		token = strtok(buff, "\t\n ");
 		
 		f = get_func(token);
