@@ -19,7 +19,7 @@ void push(stack_t **stack, unsigned int line_number)
 	top->next = *stack;
 	top->prev = NULL;
 
-	if (top->n < 48 || top->n > 57 || top->n == NULL)
+	if (top->n < 48 || top->n > 57)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
