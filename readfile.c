@@ -18,9 +18,7 @@ int main(int argc __attribute__((unused)), char *argv[])
 	int i = 0;
 	void (*f)(stack_t **stack, unsigned int line_number);
 
-	printf("antes del malloc");
 	buff = malloc(sizeof(char));
-	printf("despues del malloc");
 
 	if (buff == NULL)
 	{
