@@ -18,7 +18,7 @@ void (*get_func(char *opcode))(stack_t **stack, unsigned int line_number)
 
 	for (i = 0; *instruction_s[i].opcode != '\0'; i++)
 	{
-		if (*opcode == *instruction_s[i].opcode)
+		if (0 == strcmp(instruction_s[i].opcode, opcode))
 			return (instruction_s[i].f);
 	}
 	putchar(*opcode);
