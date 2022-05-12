@@ -16,7 +16,7 @@ void push(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	top->n = push_arg;
+	top->n = atoi(strtok(NULL, " "));
 	top->next = *stack;
 	top->prev = NULL;
 	if (*stack != NULL)
