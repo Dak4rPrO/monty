@@ -34,9 +34,8 @@ int main(int argc __attribute__((unused)), char *argv[])
 
 	while (getline(&buff, &bufsize, _open) != -1)
 	{
-		line_number++;
 		token = strtok(buff, "\t\n ");
-		
+
 		f = get_func(token);
 		f(&stack, line_number);
 	}
