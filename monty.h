@@ -41,5 +41,6 @@ extern int push_arg;
 void push(stack_t **stack, __attribute__ ((unused))unsigned int line_number);
 int main(int argc __attribute__((unused)), char *argv[]);
 void (*get_func(char *opcode))(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, __attribute__ ((unused))unsigned int line_number);
 
 #endif
