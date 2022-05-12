@@ -20,13 +20,13 @@ int main(int argc __attribute__((unused)), char *argv[])
 
 	if (buff == NULL)
 	{
-		printf("Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 
 	if (_open == NULL)
 	{
-		printf("Error: Can't open file %s\n", filename);
+		fprintf(stderr, "Error: Can't open file %s\n", filename);
 		free(buff);
 		exit(EXIT_FAILURE);
 	}
@@ -41,7 +41,6 @@ int main(int argc __attribute__((unused)), char *argv[])
 			token = strtok(NULL, " \t\n");
 			i++;
 		}
-		retorno = push(tokens);
 	}
 	free(buff);
 	return (retorno);

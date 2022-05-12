@@ -6,7 +6,7 @@
  * @list: list
  * Return: Number of characters
  */
-int _count(va_list list)
+int _count(stack_t list)
 {
 	int count = 0;
 	(void)list;
@@ -22,24 +22,23 @@ int _count(va_list list)
  * @func: format
  * Return: contador
  */
-int (*get_func(char func))(va_list list)
+int (*get_func(char *opcode))(stack_t **stack, unsigned int line_number)
 {
 	int i = 0;
 
 	instruction_t instruction_s[] = {
 		{"push", push},
-		{"pall", _pall},
 		{"\0", NULL}
 	};
 
-	for (i = 0; *instruction_s[i].func != '\0'; i++)
+	for (i = 0; *instruction_s[i].opcode != '\0'; i++)
 	{
-		if (func == *instruction_s[i].func)
+		if (opcode == *instruction_s[i].opcode)
 		{
 			return (instruction_s[i].f);
 		}
 	}
 	putchar('%');
-	putchar(func);
+	putchar(opcode);
 	return (_count);
 }
