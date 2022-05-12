@@ -22,4 +22,5 @@ void (*get_func(char *opcode))(stack_t **stack, unsigned int line_number)
 			return (instruction_s[i].f);
 	}
 	putchar(*opcode);
+	return (NULL);
 }

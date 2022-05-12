@@ -10,12 +10,11 @@
 int main(int argc __attribute__((unused)), char *argv[])
 {
 	stack_t *stack = NULL;
-	unsigned int line_number;
+	unsigned int line_number = 0;
 	const char *filename = argv[1];
 	size_t bufsize = 0;
-	char *buff = NULL, *tokens[1024], *token = NULL;
+	char *buff = NULL, *token = NULL;
 	FILE *_open = fopen(filename, "r");
-	int i = 0;
 	void (*f)(stack_t **stack, unsigned int line_number);
 
 	buff = malloc(sizeof(char));
@@ -41,4 +40,5 @@ int main(int argc __attribute__((unused)), char *argv[])
 		f(&stack, line_number);
 	}
 	free(buff);
+	return (0);
 }
