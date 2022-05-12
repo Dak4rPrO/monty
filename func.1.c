@@ -23,3 +23,19 @@ void push(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 		(*stack)->prev = top;
 	*stack = top;
 }
+
+/**
+ * @brief 
+ * 
+ */
+void pall(stack_t **stack, unsigned int line_number)
+{
+	stack_t *p = *stack;
+	(void) line_number;
+
+	while (p != NULL)
+	{
+		fprintf(stderr, "%d\n", p->n);
+		p = p->next;
+	}
+}
