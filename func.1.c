@@ -40,6 +40,9 @@ void pall(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 	stack_t *dentrostack;
 
 	dentrostack = *stack;
+
+	if (dentrostack == NULL)
+		return;
 	while (dentrostack != NULL)
 	{
 		printf("%d\n", dentrostack->n);
