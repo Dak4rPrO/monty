@@ -6,20 +6,21 @@
  * @argv: argument variable
  * Return: return 0
  */
+
 int main(int argc __attribute__((unused)), char *argv[])
 {
-	struct stack;
+	stack_t *stack = NULL;
 	unsigned int line_number;
 	const char *filename = argv[1];
 	size_t bufsize = 0;
-	char *buff = NULL;
+	char *buff = NULL, *tokens[1024], *token = NULL;
 	FILE *_open = fopen(filename, "r");
-	char *token = NULL;
-	char *tokens[1024];
-	int i = 0, retorno = 0;
+	int i = 0;
 	void (*f)(stack_t **stack, unsigned int line_number);
 
+	printf("antes del malloc");
 	buff = malloc(sizeof(char));
+	printf("despues del malloc");
 
 	if (buff == NULL)
 	{
@@ -37,15 +38,9 @@ int main(int argc __attribute__((unused)), char *argv[])
 	while (getline(&buff, &bufsize, _open) != -1)
 	{
 		token = strtok(buff, "\t\n ");
-		/*while (token != NULL)
-		{
-			tokens[i] = token;
-			tokens[i + 1] = NULL;
-			token = strtok(NULL, " \t\n");
-			i++;
-		}*/
+		
 		f = get_func(token);
-		f(stack, line_number);
+		f(&stack, line_number);
 	}
 	free(buff);
 }
