@@ -13,16 +13,24 @@ void push(stack_t **stack, unsigned int line_number)
 	if (top == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
+		Free_s(stack);
+		exit(EXIT_FAILURE);
+	}
+	
+	if (stack == NULL)
+	{
+		fprintf(stderr, "L%d: stack not found\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
 	top->n = atoi(strtok(NULL, " "));
 
-	if (top->n < '0' || top->n > '9')
+/**	if (top->n < '0' || top->n > '9')
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
+*/
 	top->next = *stack;
 	top->prev = NULL;
 
