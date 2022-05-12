@@ -12,6 +12,9 @@ int main(int argc __attribute__((unused)), char *argv[])
 	size_t bufsize = 0;
 	char *buff = NULL;
 	FILE *_open = fopen(filename, "r");
+	char *token = NULL;
+	char *tokens[1024];
+	int i = 0, retorno = 0;
 
 	buff = malloc(sizeof(char));
 
@@ -29,9 +32,17 @@ int main(int argc __attribute__((unused)), char *argv[])
 	}
 
 	while (getline(&buff, &bufsize, _open) != -1)
-		printf("%s", buff);
-
+	{
+		token = strtok(buff, "\t\n");
+		while (token != NULL)
+		{
+			tokens[i] = token;
+			tokens[i + 1] = NULL;
+			token = strtok(NULL, " \t\n");
+			i++;
+		}
+		retorno = push(tokens);
+	}
 	free(buff);
-
-	return (0);
+	return (retorno);
 }

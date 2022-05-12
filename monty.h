@@ -37,6 +37,8 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-void read_textfile(const char *filename, size_t letters);
+extern int push_arg;
+void push(stack_t **stack, __attribute__ ((unused))unsigned int line_number);
+int main(int argc __attribute__((unused)), char *argv[]);
 
 #endif
