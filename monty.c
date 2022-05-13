@@ -7,7 +7,7 @@
  * Return: return 0
  */
 
-int main(int argc __attribute__((unused)), char *argv[])
+int main(int argc, char *argv[])
 {
 	stack_t *stack = NULL;
 	unsigned int line_number = 1;
@@ -18,6 +18,12 @@ int main(int argc __attribute__((unused)), char *argv[])
 	void (*f)(stack_t **stack, unsigned int line_number);
 
 	buff = malloc(sizeof(char));
+	argc = argc;
+	if (argc > 2 || filename == NULL) 
+	{
+		fprintf(stderr, "USAGE: monty file\n");
+		exit(EXIT_FAILURE);
+	}
 
 	if (buff == NULL)
 	{
@@ -36,6 +42,7 @@ int main(int argc __attribute__((unused)), char *argv[])
 	{
 		line_number++;
 		token = strtok(buff, "\t\n ");
+
 		if (token[0] == '#')
 			continue;
 

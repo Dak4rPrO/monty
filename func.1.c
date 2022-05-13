@@ -24,8 +24,9 @@ void push(stack_t **stack, unsigned int line_number)
 	}
 
 	top->n = atoi(strtok(NULL, " "));
+/**	printf("%d", top->n);
 
-/**	if (top->n < '0' || top->n > '9')
+	if (top->n < 48 || top->n > 57)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
