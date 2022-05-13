@@ -42,6 +42,6 @@ int main(int argc, char *argv[])
 			fprintf(stderr, "L%u: unknown instruction %s\n", line_number, token);
 			free(buff), fclose(_open), exit(EXIT_FAILURE);	}
 		f(&stack, line_number);	}
-	free(buff), fclose(_open);
+	free(buff), fclose(_open), Free_s(&stack);
 	return (0);
 }
