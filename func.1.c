@@ -8,6 +8,9 @@
 void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *top;
+	char *tok;
+	int atok = 0;
+
 
 	top = malloc(sizeof(stack_t));
 	if (top == NULL)
@@ -22,17 +25,17 @@ void push(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%d: stack not found\n", line_number);
 		exit(EXIT_FAILURE);
 	}
+	
+	tok = strtok(NULL, " \n\t");
 
-	top->n = atoi(strtok(NULL, " "));
-/*
-*	printf("%d", top->n);
-
-	if (top->n < 48 || top->n > 57)
+	if (isNumber(tok) == 0 && tok != NULL)
+		atok = atoi(tok);
+	else
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-*/
+	top->n = atok;
 	top->next = *stack;
 	top->prev = NULL;
 
@@ -53,7 +56,7 @@ void pall(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 	if (*stack == NULL)
 		return;
 
-	while (dentrostack)
+	while (dentrostack != NULL)
 	{
 		printf("%d\n", dentrostack->n);
 		dentrostack = dentrostack->next;

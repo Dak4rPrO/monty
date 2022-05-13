@@ -30,7 +30,6 @@ int main(int argc, char *argv[])
 		free(buff), exit(EXIT_FAILURE);	}
 	while (getline(&buff, &bufsize, _open) != -1)
 	{
-		line_number++;
 		token = strtok(buff, "\t\n ");
 
 		if (token[0] == '#')
@@ -41,7 +40,8 @@ int main(int argc, char *argv[])
 		{
 			fprintf(stderr, "L%u: unknown instruction %s\n", line_number, token);
 			free(buff), fclose(_open), exit(EXIT_FAILURE);	}
-		f(&stack, line_number);	}
+		f(&stack, line_number);	
+		buff = NULL;	line_number++;}
 	free(buff), fclose(_open), Free_s(&stack);
 	return (0);
 }
