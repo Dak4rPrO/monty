@@ -1,23 +1,23 @@
 #include "monty.h"
 
 /**
- * _isdigit - check the code
- * @c : l
- * Return: Always 0.
+ * isNumber - checkea si el token es un numero o no
+ * @string: token dado
+ * Return: 0 es bien, 1 es mal
 */
-int isNumber(char *c)
+int isNumber(char *string)
 {
 	unsigned int index = 0;
 
-	if (c == NULL)
+	if (string == NULL)
 		return (1);
 
-	if (c[0] == '-')
+	if (string[0] == '-')
 		index++;
 
-	while (c[index])
+	while (string[index])
 	{
-		if (c[index] >= 48 && c[index] <= 57)
+		if (string[index] >= 48 && string[index] <= 57)
 		{
 			index++;
 			continue;

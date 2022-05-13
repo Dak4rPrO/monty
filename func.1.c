@@ -25,7 +25,7 @@ void push(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%d: stack not found\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	
+
 	tok = strtok(NULL, " \n\t");
 
 	if (isNumber(tok) == 0 && tok != NULL)
@@ -82,6 +82,7 @@ void nop(stack_t **stack, unsigned int line_number)
 void pint(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 {
 	if (*stack == NULL)
+		fprintf("L%d: can't pint, stack empty", line_number);
 		exit(EXIT_FAILURE);
 
 	printf("%d\n", (*stack)->n);
