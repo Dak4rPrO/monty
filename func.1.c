@@ -79,11 +79,13 @@ void nop(stack_t **stack, unsigned int line_number)
 * @stack: pointer to linked list stack
 * @line_number: number of line opcode occurs on
 */
-void pint(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
+void pint(stack_t **stack, unsigned int line_number)
 {
 	if (*stack == NULL)
-		fprintf("L%d: can't pint, stack empty", line_number);
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty", line_number);
 		exit(EXIT_FAILURE);
+	}
 
 	printf("%d\n", (*stack)->n);
 }
