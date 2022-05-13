@@ -16,7 +16,7 @@ void push(stack_t **stack, unsigned int line_number)
 		Free_s(stack);
 		exit(EXIT_FAILURE);
 	}
-	
+
 	if (stack == NULL)
 	{
 		fprintf(stderr, "L%d: stack not found\n", line_number);
@@ -24,7 +24,8 @@ void push(stack_t **stack, unsigned int line_number)
 	}
 
 	top->n = atoi(strtok(NULL, " "));
-/**	printf("%d", top->n);
+/*
+*	printf("%d", top->n);
 
 	if (top->n < 48 || top->n > 57)
 	{

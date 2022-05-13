@@ -1,12 +1,10 @@
 #include "monty.h"
-
 /**
  * main - monty
  * @argc: argument count
  * @argv: argument variable
  * Return: return 0
  */
-
 int main(int argc, char *argv[])
 {
 	stack_t *stack = NULL;
@@ -18,26 +16,18 @@ int main(int argc, char *argv[])
 	void (*f)(stack_t **stack, unsigned int line_number);
 
 	buff = malloc(sizeof(char));
-	argc = argc;
-	if (argc > 2 || filename == NULL) 
+	if (argc > 2 || filename == NULL)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
-		exit(EXIT_FAILURE);
-	}
-
+		exit(EXIT_FAILURE);	}
 	if (buff == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
-
+		exit(EXIT_FAILURE);	}
 	if (_open == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", filename);
-		free(buff);
-		exit(EXIT_FAILURE);
-	}
-
+		free(buff), exit(EXIT_FAILURE);	}
 	while (getline(&buff, &bufsize, _open) != -1)
 	{
 		line_number++;
@@ -50,11 +40,8 @@ int main(int argc, char *argv[])
 		if (f == NULL)
 		{
 			fprintf(stderr, "L%u: unknown instruction %s\n", line_number, token);
-			free(buff), fclose(_open);
-			exit(EXIT_FAILURE);
-		}
-		f(&stack, line_number);
-	}
+			free(buff), fclose(_open), exit(EXIT_FAILURE);	}
+		f(&stack, line_number);	}
 	free(buff), fclose(_open);
 	return (0);
 }
