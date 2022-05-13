@@ -15,14 +15,9 @@ int main(int argc, char *argv[])
 	FILE *_open = fopen(filename, "r");
 	void (*f)(stack_t **stack, unsigned int line_number);
 
-	buff = malloc(sizeof(char));
 	if (argc > 2 || filename == NULL)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
-		exit(EXIT_FAILURE);	}
-	if (buff == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);	}
 	if (_open == NULL)
 	{
@@ -31,8 +26,7 @@ int main(int argc, char *argv[])
 	while (getline(&buff, &bufsize, _open) != -1)
 	{
 		token = strtok(buff, "\t\n ");
-
-		if (token[0] == '#')
+		if (token == NULL || token[0] == '#')
 			continue;
 
 		f = get_func(token);
