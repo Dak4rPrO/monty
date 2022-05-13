@@ -8,7 +8,7 @@
 void swap(stack_t **stack, unsigned int line_number)
 {
 	int temp;
-	stack_t *curr, *prev = NULL;
+	stack_t *curr = *stack;
 
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 	{
@@ -16,10 +16,31 @@ void swap(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	for (curr = *stack; curr->next != NULL; curr = curr->next)
-		prev = curr;
+	while (curr->next != NULL)
+		curr = curr->next;
 
 	temp = curr->n;
-	curr->n = prev->n;
-	prev->n = temp;
+	curr->n = curr->prev->n;
+	curr->prev->n = temp;
+}
+
+/**
+*
+*
+*/
+
+void add(stack_t **stack, unsigned int line_number)
+{
+	stack_t *curr = *stack;
+
+	if (stack == NULL || (*stack) == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	
+	(*stack)->next->n += (*stack)->n;
+	*stack = (*stack)->next;
+	(*stack)->prev = NULL;
+	free(curr);
 }

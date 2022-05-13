@@ -46,11 +46,12 @@ void push(stack_t **stack, unsigned int line_number)
  */
 void pall(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 {
-	stack_t *dentrostack;
+	stack_t *dentrostack = *stack;
 
-	dentrostack = *stack;
+	if (*stack == NULL)
+		return;
 
-	while (dentrostack != NULL)
+	while (dentrostack)
 	{
 		printf("%d\n", dentrostack->n);
 		dentrostack = dentrostack->next;
