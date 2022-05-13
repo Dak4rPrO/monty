@@ -42,12 +42,12 @@ int main(int argc __attribute__((unused)), char *argv[])
 		f = get_func(token);
 		if (f == NULL)
 		{
-			fprintf(stderr, "L%u: unknown instruction %s\n", line_number, token1);
+			fprintf(stderr, "L%u: unknown instruction %s\n", line_number, token);
 			free(buff), fclose(_open);
 			exit(EXIT_FAILURE);
 		}
 		f(&stack, line_number);
 	}
-	free(buff), fclose(_open), Free_s(stack);
+	free(buff), fclose(_open);
 	return (0);
 }

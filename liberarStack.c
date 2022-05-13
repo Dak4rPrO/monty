@@ -9,7 +9,7 @@ void Free_s(stack_t **stack)
 {
 	stack_t *temp = NULL;
 
-	if (stack == NULL || *stack == NULL)
+	if (*stack == NULL)
 		return;
 
 	while (*stack != NULL)
