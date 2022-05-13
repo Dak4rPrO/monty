@@ -34,11 +34,20 @@ int main(int argc __attribute__((unused)), char *argv[])
 
 	while (getline(&buff, &bufsize, _open) != -1)
 	{
+		line_number++;
 		token = strtok(buff, "\t\n ");
+		if (token[0] == '#')
+			continue;
 
 		f = get_func(token);
+		if (f == NULL)
+		{
+			fprintf(stderr, "L%u: unknown instruction %s\n", line_number, token1);
+			free(buff), fclose(_open);
+			exit(EXIT_FAILURE);
+		}
 		f(&stack, line_number);
 	}
-	free(buff);
+	free(buff), fclose(_open), Free_s(stack);
 	return (0);
 }
