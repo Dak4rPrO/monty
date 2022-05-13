@@ -87,14 +87,18 @@ void pint(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
  * @stack: pointer to linked list stack
  * @line_number: number of line opcode occurs on
  */
-void pop(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
+void pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *current = *stack, *temp = NULL;
 
 	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%d: can't pop an empty stack", line_number);
 		exit(EXIT_FAILURE);
+	}
 
 	temp = current;
+
 	if (current->next)
 	{
 		current = current->next;
@@ -102,9 +106,6 @@ void pop(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 		*stack = current;
 	}
 	else
-	{
 		*stack = NULL;
-	}
-
 	free(temp);
 }
