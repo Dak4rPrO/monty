@@ -8,7 +8,7 @@
 int main(int argc, char *argv[])
 {
 	stack_t *stack = NULL;
-	unsigned int line_number = 1;
+	unsigned int line_number = 0;
 	const char *filename = argv[1];
 	size_t bufsize = 0;
 	char *buff = NULL, *token = NULL;
@@ -25,6 +25,7 @@ int main(int argc, char *argv[])
 		free(buff), exit(EXIT_FAILURE);	}
 	while (getline(&buff, &bufsize, _open) != -1)
 	{
+		line_number++;
 		token = strtok(buff, "\t\n ");
 		if (token == NULL || token[0] == '#')
 			continue;
@@ -32,10 +33,11 @@ int main(int argc, char *argv[])
 		f = get_func(token);
 		if (f == NULL)
 		{
-			fprintf(stderr, "L%u: unknown instruction %s\n", line_number, token);
+			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, token);
 			free(buff), fclose(_open), exit(EXIT_FAILURE);	}
-		f(&stack, line_number);	
-		buff = NULL;	line_number++;}
+		f(&stack, line_number);
+		free(buff);	
+		buff = NULL;	}
 	free(buff), fclose(_open), Free_s(&stack);
 	return (0);
 }
