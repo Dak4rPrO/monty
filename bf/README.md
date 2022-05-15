@@ -9,6 +9,7 @@ A loop only starts when the value of the current cell is non-zero, otherwise exe
 ### 16. Brainf*ck
 1000.Write a Brainf*ck script that prints  `School`, followed by a new line.
 
+![image](https://user-images.githubusercontent.com/98028958/168493420-e6353d78-6c4e-4adf-9d14-ed8c7d0ce3ff.png)
 
 ### Commands
 The eight language commands each consist of a single character:
